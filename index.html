@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CyberTools Hub - 100% Free Online Cyber Security, Daily Utilities, AI Scripts, File Converters aur Developer Tools. Tez, surakshit aur aasan tools ek hi jagah.">
+  <meta name="keywords" content="CyberTools Hub, Free Online Tools, PDF Compressor, Password Generator, IP Lookup, Word Counter, Hash Generator, QR Code Maker, Image Converter">
+  <meta name="author" content="Ravinder Sharma">
+  <title>CyberTools Hub | All-in-One Free Cyber & Daily Utility Tools</title>
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- Cyber Neon Glow Cursor -->
+  <div class="cyber-cursor" id="cursorDot"></div>
+  <div class="cyber-cursor-ring" id="cursorRing"></div>
+
+  <!-- Background Particle Interactive Canvas -->
+  <canvas id="matrixCanvas"></canvas>
+
+  <!-- Live Status Bar -->
+  <div class="live-status-bar">
+    <div class="status-wrap">
+      <span class="live-pulse"></span>
+      <span id="liveStatusText">⚡ CyberTools Hub Live: 15+ Advanced Tools & Utilities Online!</span>
+    </div>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header class="navbar">
+    <div class="logo-area">
+      <div class="logo-icon"><i class="fa-solid fa-microchip"></i></div>
+      <div class="logo-text">
+        <span class="brand-title">CYBER<span>TOOLS</span> HUB</span>
+        <small>ALL-IN-ONE UTILITIES & SECURITY</small>
+      </div>
+    </div>
+
+    <nav id="mainNav">
+      <ul class="nav-links">
+        <li><a href="#home" onclick="closeNav()">Home</a></li>
+        <li><a href="#utilities" onclick="closeNav()">Daily Utilities</a></li>
+        <li><a href="#security" onclick="closeNav()">Security Tools</a></li>
+        <li><a href="#premium-files" onclick="closeNav()">Exclusive Files</a></li>
+        <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="https://wa.me/917500078349?text=Namaste%20Ravinder%20bhai,%20CyberTools%20Hub%20se%20sampark%20kar%20raha%20hoon" target="_blank" class="nav-btn-wa">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+      </a>
+      <!-- Hidden Admin Portal Access Key -->
+      <button class="nav-secret-lock" onclick="openAdminModal()" title="Admin Control Room">
+        <i class="fa-solid fa-fingerprint"></i>
+      </button>
+      <button class="mobile-toggle" onclick="toggleNav()" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Showcase Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-badge">
+        <i class="fa-solid fa-shield-halved"></i> 100% Free • No Login Needed • Fast & Secure
+      </div>
+      <h1 class="hero-heading">
+        Agli Peedhi Ke <span class="neon-gradient">Smart Online Tools</span><br>
+        Aur Cyber Utilities Ek Hi Jagah.
+      </h1>
+      <p class="hero-desc">
+        CyberTools Hub par bina kisi charges ke daily file conversion, strong password generation, network IP lookup aur utility tools ka upyog karein. Har tool fast aur verified hai.
+      </p>
+
+      <!-- Search Bar -->
+      <div class="search-box-container">
+        <div class="search-input-wrap">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="toolSearchInput" placeholder="Kisi bhi tool ka naam search karein (e.g. Password, IP, PDF, QR Code, Hash, SIP)..." oninput="filterTools()">
+        </div>
+      </div>
+
+      <!-- Quick Category Filter Pills -->
+      <div class="category-pills">
+        <button class="pill active" onclick="setCategoryFilter('All')">Sabhi Tools</button>
+        <button class="pill" onclick="setCategoryFilter('Security')"><i class="fa-solid fa-shield-cat"></i> Cyber Security</button>
+        <button class="pill" onclick="setCategoryFilter('Utility')"><i class="fa-solid fa-screwdriver-wrench"></i> Daily Utilities</button>
+        <button class="pill" onclick="setCategoryFilter('Text')"><i class="fa-solid fa-font"></i> Text & Code</button>
+        <button class="pill" onclick="setCategoryFilter('Finance')"><i class="fa-solid fa-calculator"></i> Calculators</button>
+      </div>
+    </section>
+
+    <!-- Interactive Live Tools Grid -->
+    <section id="utilities" class="content-section">
+      <div class="section-title-wrap">
+        <h2>Sabhi <span>Live Free Tools</span></h2>
+        <p>Apna manpasand tool chunein aur turant browser me bina kisi download ke use karein:</p>
+      </div>
+
+      <div class="tools-grid" id="toolsContainer">
+        <!-- Tools will be rendered dynamically by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Exclusive File & Tool Downloads Section -->
+    <section id="premium-files" class="content-section">
+      <div class="section-title-wrap">
+        <h2>Exclusive <span>Software & Scripts</span></h2>
+        <p>Advance automated software packages aur source files direct verify karke hasil karein:</p>
+      </div>
+
+      <div class="files-grid" id="filesContainer">
+        <!-- Project & script files rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Direct Contact & Support -->
+    <section id="contact" class="content-section">
+      <div class="section-title-wrap">
+        <h2>Direct <span>Sampark Desk</span></h2>
+        <p>Kisi bhi tool me pareshani ya custom tool/script requirement ke liye alert bhejein:</p>
+      </div>
+
+      <div class="contact-card glass-panel">
+        <form id="userContactForm" onsubmit="handleUserContact(event)">
+          <div class="form-row">
+            <input type="text" id="cName" placeholder="Aapka Naam" required>
+            <input type="text" id="cPhone" placeholder="WhatsApp / Mobile No." required>
+          </div>
+          <input type="email" id="cEmail" placeholder="Email Address (Optional)">
+          <textarea id="cMessage" rows="4" placeholder="Aapko kaun sa tool ya madad chahiye..." required></textarea>
+          <button type="submit" class="cyber-btn-glow">
+            <i class="fa-solid fa-paper-plane"></i> Sandesh Bhejein & Alert Telegram
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Tool Interactive Modal Popup -->
+  <div id="toolModal" class="modal-backdrop">
+    <div class="modal-window glass-panel">
+      <span class="modal-close" onclick="closeToolModal()">&times;</span>
+      <div class="tool-modal-header">
+        <div class="tool-modal-icon" id="tIcon"></div>
+        <div>
+          <h3 id="tTitle">Tool Title</h3>
+          <span class="badge" id="tCat">Category</span>
+        </div>
+      </div>
+      <div class="tool-modal-body" id="toolDynamicBody">
+        <!-- Interactive Tool Interface Injected Here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Direct UPI Payment Modal -->
+  <div id="paymentModal" class="modal-backdrop">
+    <div class="modal-window glass-panel pay-window">
+      <span class="modal-close" onclick="closePaymentModal()">&times;</span>
+      <div class="modal-badge-pay"><i class="fa-solid fa-shield-halved"></i> 100% Direct UPI Instant Verification</div>
+      
+      <div id="payStep1">
+        <h3 id="payItemTitle" style="margin-top: 10px;">Item Name</h3>
+        <p id="payItemDesc" style="color:var(--text-dim); font-size: 0.88rem;"></p>
+
+        <div class="price-showcase">
+          <span class="currency">₹</span>
+          <span class="val" id="payAmountVal">0</span>
+        </div>
+
+        <div class="qr-frame">
+          <img id="qrDisplayImg" src="" alt="UPI QR">
+        </div>
+
+        <div class="upi-copy-box">
+          <span>UPI ID:</span>
+          <strong>ravindershrma1@nyes</strong>
+          <button class="btn-copy" onclick="copyUpiId()"><i class="fa-regular fa-copy"></i> Copy</button>
+        </div>
+
+        <p class="pay-note">GPay, PhonePe, Paytm ya kisi bhi UPI app se scan karke payment karein aur niche UTR submit karein.</p>
+
+        <button class="cyber-btn-glow" style="width: 100%;" onclick="showUtrEntry()">
+          <i class="fa-solid fa-arrow-right"></i> Maine Payment Kar Diya (Next)
+        </button>
+      </div>
+
+      <div id="payStep2" style="display:none;">
+        <h3>Payment Verification Form</h3>
+        <p style="color: var(--text-dim); font-size: 0.82rem; margin: 8px 0 16px;">
+          Apna 12-digit UPI UTR / Reference number enter karein. Alert turant Telegram aur WhatsApp par deliver hoga:
+        </p>
+        <input type="text" id="payUtr" placeholder="12-digit UPI UTR / Ref No." required>
+        <input type="text" id="payWhatsApp" placeholder="Aapka WhatsApp Number" required>
+        <input type="text" id="payCustomerName" placeholder="Aapka Naam" required>
+
+        <button class="cyber-btn-glow" style="width: 100%; margin-top: 12px;" onclick="submitPaymentDetails()">
+          <i class="fa-solid fa-check-circle"></i> Verification Submit Karein
+        </button>
+
+        <div id="paySuccessNotice" style="display: none; margin-top: 15px; padding: 14px; background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; border-radius: 10px;">
+          <h4 style="color: #22c55e;"><i class="fa-solid fa-circle-check"></i> Request Delivered!</h4>
+          <p style="font-size: 0.82rem; margin: 8px 0 12px;">Aapki payment request Telegram bot par bhej di gayi hai. WhatsApp par confirm karein:</p>
+          <a id="waProofBtn" href="#" target="_blank" class="cyber-btn-wa">
+            <i class="fa-brands fa-whatsapp"></i> Send Proof on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Master Admin Modal (Protected with @123hack) -->
+  <div id="adminModal" class="modal-backdrop">
+    <div class="modal-window glass-panel admin-window">
+      <span class="modal-close" onclick="closeAdminModal()">&times;</span>
+      
+      <!-- Lock Screen -->
+      <div id="adminAuthScreen">
+        <div class="admin-lock-icon"><i class="fa-solid fa-lock"></i></div>
+        <h3>Control Room Auth</h3>
+        <p style="color:var(--text-dim); font-size:0.85rem; margin-bottom:14px;">Master Access Password Darj Karein:</p>
+        <input type="password" id="adminMasterPass" placeholder="Enter password...">
+        <button class="cyber-btn-glow" style="width:100%; margin-top:10px;" onclick="verifyAdminAccess()">
+          <i class="fa-solid fa-key"></i> Unlock Admin Panel
+        </button>
+      </div>
+
+      <!-- Dashboard Screen -->
+      <div id="adminDashboardScreen" style="display:none;">
+        <div class="admin-bar">
+          <h3><i class="fa-solid fa-sliders"></i> Master Command Panel</h3>
+          <button class="btn-logout-adm" onclick="logoutAdmin()"><i class="fa-solid fa-power-off"></i></button>
+        </div>
+
+        <div class="admin-tab-nav">
+          <button class="adm-tab active" onclick="switchAdminTab('admTabUpload')"><i class="fa-solid fa-cloud-arrow-up"></i> Add File / Tool</button>
+          <button class="adm-tab" onclick="switchAdminTab('admTabFiles')"><i class="fa-solid fa-folder-open"></i> Manage Files</button>
+          <button class="adm-tab" onclick="switchAdminTab('admTabOrders')"><i class="fa-solid fa-receipt"></i> Orders & UTR</button>
+          <button class="adm-tab" onclick="switchAdminTab('admTabTelegram')"><i class="fa-brands fa-telegram"></i> Telegram Settings</button>
+        </div>
+
+        <!-- Tab: Upload File -->
+        <div id="admTabUpload" class="adm-tab-page">
+          <h4>Naya File Ya Software Add Karein</h4>
+          <input type="text" id="newFileTitle" placeholder="Project / Software Ka Naam">
+          <input type="text" id="newFileCat" placeholder="Category (e.g. AI Assistant, Python Script, Tool)">
+          <input type="number" id="newFilePrice" placeholder="Price (0 for Free, ya amount in ₹)">
+          <input type="text" id="newFileDesc" placeholder="Features / Short Detail">
+          <input type="text" id="newFileUrl" placeholder="Download Link (Google Drive / Mediafire URL)">
+          <div style="margin: 8px 0 14px;">
+            <label style="font-size:0.75rem; color:var(--cyan-glow); display:block; margin-bottom:4px;">Ya phone/PC se direct file upload karein:</label>
+            <input type="file" id="newFileUploader" onchange="handleAdminFileUpload(event)">
+          </div>
+          <button class="cyber-btn-glow" style="width:100%;" onclick="saveNewAdminFile()">
+            <i class="fa-solid fa-plus"></i> Live Publish Karein
+          </button>
+        </div>
+
+        <!-- Tab: Manage Files -->
+        <div id="admTabFiles" class="adm-tab-page" style="display:none;">
+          <h4>Website Par Active Files & Tools</h4>
+          <div id="adminFilesList" class="adm-list-container"></div>
+        </div>
+
+        <!-- Tab: Orders & Transactions -->
+        <div id="admTabOrders" class="adm-tab-page" style="display:none;">
+          <h4>Live Payment Submissions (UTR Numbers)</h4>
+          <div id="adminOrdersList" class="adm-list-container"></div>
+        </div>
+
+        <!-- Tab: Telegram Settings -->
+        <div id="admTabTelegram" class="adm-tab-page" style="display:none;">
+          <h4>Telegram Bot Test & Config</h4>
+          <label>Bot Token:</label>
+          <input type="text" id="admBotToken" value="8808678555:AAFudqE_CJab9LW13HgopqdGD__hp06Vl0k">
+          <label>Chat ID:</label>
+          <input type="text" id="admChatId" value="8843460945">
+          <div style="display:flex; gap:10px; margin-top:12px;">
+            <button class="cyber-btn-glow" style="flex:1;" onclick="saveTelegramSettings()">Settings Save Karein</button>
+            <button class="cyber-btn-glow" style="flex:1; background:#22c55e;" onclick="testTelegramBotLive()">Live Test Bhejein</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-wrap">
+      <div class="footer-brand">
+        <h3><i class="fa-solid fa-microchip"></i> CyberTools Hub</h3>
+        <p>100% Free Online Daily Utilities, Security Verification & File Packages.</p>
+        <p>Managed & Developed by Ravinder Sharma • Uttar Pradesh, India 🇮🇳</p>
+      </div>
+      <div class="footer-links">
+        <a href="tel:9258294556"><i class="fa-solid fa-phone"></i> +91 9258294556</a>
+        <a href="https://wa.me/917500078349" target="_blank"><i class="fa-brands fa-whatsapp"></i> +91 7500078349</a>
+        <a href="https://ravindershrmacyberexpert.netlify.app" target="_blank"><i class="fa-solid fa-globe"></i> Official Portfolio</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 CyberTools Hub. Surakshit aur smart digital tools har aam vyakti ke liye.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
